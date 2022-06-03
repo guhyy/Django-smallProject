@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block style %}
+  
+{% endblock style %}
+
+
+{% block content %}
+<div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">损坏设备列表</div>
+            <div class="panel-body">
+              <a href="/report/" class="btn btn-warning">上报修理</a>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>名称</th>
+                  <th>规格</th>
+                  <th>单价</th>
+                  <th>日期</th>
+                  <th>生产厂家</th>
+                  <th>购买人</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in form %}
+                    <tr>
+                        <th scope="row">{{item.number}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.specification}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.date|date:'Y-m-d'}}</td>
+                        <td>{{item.Manufacturer}}</td>
+                        <td>{{item.buyer}}</td>
+                        <td>{{item.get_state_display}}</td>
+                        <td>
+                            <a href="/{{item.id}}/update/" class="btn btn-success btn-xs">更新</a>
+                            <a href="/{{item.id}}/application/" class="btn btn-danger btn-xs">申请</a>
+                            <a href="/{{item.id}}/{{item.number}}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <div class="panel panel-default">
+            <div class="panel-heading">已上报</div>
+            <div class="panel-body">
+
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>修理日期</th>
+                  <th>修理厂家</th>
+                  <th>修理单价</th>
+                  <th>责任人</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for obj in form2 %}
+                    <tr>
+                        <th scope="row">{{obj.number}}</th>
+                        <td>{{obj.date|date:'Y-m-d'}}</td>
+                        <td>{{obj.manufacturer}}</td>
+                        <td>{{obj.price}}</td>
+                        <td>{{obj.responsible}}</td>
+                        <td>
+                          <a href="/{{obj.id}}/deletereport/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+{% endblock content %}

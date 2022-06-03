@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>shoplist</title>
+{% endblock %}
+
+{% block style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">设备列表</div>
+            <div class="panel-body">
+                <a href="/add/" class="btn btn-success">登记</a>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>名称</th>
+                  <th>规格</th>
+                  <th>单价</th>
+                  <th>日期</th>
+                  <th>生产厂家</th>
+                  <th>购买人</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in form %}
+                    <tr>
+                        <th scope="row">{{item.number}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.specification}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.date|date:'Y-m-d'}}</td>
+                        <td>{{item.Manufacturer}}</td>
+                        <td>{{item.buyer}}</td>
+                        <td>
+                            <a href="/{{item.id}}/update/" class="btn btn-success btn-xs">更新</a>
+                            <a href="/{{item.id}}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <a href="/download/" class="btn btn-success btn-xs">下载</a>
+    </div>
+</div>
+{% endblock %}

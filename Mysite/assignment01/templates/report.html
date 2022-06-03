@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block style %}
+  
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body" style="font-weight:bolder;font-size: 20px;">
+            上报修理
+        </div>
+        <div class="panel-footer">
+            <form method="post" novalidate >
+                {% csrf_token %}
+                {% for item in form %}
+                    <label style="margin-top:10px;">{{item.label}}:</label>
+                    {{item}}
+                    <p style="color: red;margin-top: 10px;font-weight: bold;">{{item.errors.0}}</p>
+                {% endfor %}
+                <button type="submit" class="btn btn-success" style="margin-top:20px ;">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
