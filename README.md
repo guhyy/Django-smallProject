@@ -1,4 +1,3 @@
-# Django-  
 django前后端不分离实现小项目，对数据库的增删改查，下载excel表格，【发送电子邮件】（很麻烦，个人测试用）  
 1.安装python   
 2.pip install pymysql   
